@@ -1,0 +1,3 @@
+# Template only: no plotting implementation or dependencies exist yet.
+# Record the Python version in docs/reproduction.md.
+# Add the exact package versions used by this figure after verification.

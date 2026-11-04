@@ -1,0 +1,23 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local secrets and editor / operating-system files
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.tmp
+
+# Local temporary work; published CSVs and figure outputs are tracked.
+/tmp/
+/temp/
+**/scratch/
