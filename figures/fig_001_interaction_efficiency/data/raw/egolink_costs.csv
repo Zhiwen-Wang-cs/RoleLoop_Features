@@ -1,0 +1,16 @@
+source_id,dataset,model,mode,tokens_per_task,time_seconds_per_task
+author_table_3,EgoLink2026,Qwen3.8-27B,ReAct,254815,77.56
+author_table_3,EgoLink2026,Qwen3.8-27B,Summary,367904,386.66
+author_table_3,EgoLink2026,Qwen3.8-27B,RoleLoop,228523,420.00
+author_table_3,EgoLink2026,Muse-Glimmer-30B,ReAct,414203,167.90
+author_table_3,EgoLink2026,Muse-Glimmer-30B,Summary,526802,1088.71
+author_table_3,EgoLink2026,Muse-Glimmer-30B,SAGE,310395,503.35
+author_table_3,EgoLink2026,GPT-5.6-sol,ReAct,287309,271.83
+author_table_3,EgoLink2026,GPT-5.6-sol,Summary,299920,367.72
+author_table_3,EgoLink2026,GPT-5.6-sol,RoleLoop,217289,941.24
+author_table_3,EgoLink2026,Qwen3.5-9B,ReAct,313102,47.78
+author_table_3,EgoLink2026,Qwen3.5-9B,Summary,316176,151.44
+author_table_3,EgoLink2026,Qwen3.5-9B,RoleLoop,494328,611.41
+author_table_3,EgoLink2026,Qwen3.5-4B,ReAct,295266,34.96
+author_table_3,EgoLink2026,Qwen3.5-4B,Summary,521541,121.13
+author_table_3,EgoLink2026,Qwen3.5-4B,RoleLoop,395698,221.00

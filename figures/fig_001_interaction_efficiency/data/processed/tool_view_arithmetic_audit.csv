@@ -1,0 +1,13 @@
+source_id,dataset,model,reported_saving_pct,recomputed_saving_pct_from_tokens,reported_saving_tokens_per_task,recomputed_saving_tokens_per_task,rounding_residual_tokens,percentage_sign_conflict
+author_table_2,EgoBench,Muse-Glimmer-30B,86,85.60357675111773472429210134,287100,287200,100,false
+author_table_2,EgoBench,Qwen3.8-27B,88,87.62057877813504823151125402,381500,381500,0,false
+author_table_2,EgoBench,GPT-5.6-sol,84,84.42991418062934205149162239,206600,206600,0,false
+author_table_2,ECom-Bench,Muse-Glimmer-30B,62,62.08053691275167785234899329,55500,55500,0,false
+author_table_2,ECom-Bench,Qwen3.8-27B,62,61.48036253776435045317220544,40800,40700,-100,false
+author_table_2,ECom-Bench,GPT-5.6-sol,64,64.16666666666666666666666667,84700,84700,0,false
+author_table_2,TravelGym-v2,Muse-Glimmer-30B,-22,21.82890855457227138643067847,7400,7400,0,true
+author_table_2,TravelGym-v2,Qwen3.8-27B,-27,26.95035460992907801418439716,11400,11400,0,true
+author_table_2,TravelGym-v2,GPT-5.6-sol,-31,31.09243697478991596638655462,11100,11100,0,true
+author_table_2,COMPASS,Muse-Glimmer-30B,69,68.75838926174496644295302013,204800,204900,100,false
+author_table_2,COMPASS,Qwen3.8-27B,67,66.74391657010428736964078795,115300,115200,-100,false
+author_table_2,COMPASS,GPT-5.6-sol,66,65.69294970349220294311443005,299100,299100,0,false

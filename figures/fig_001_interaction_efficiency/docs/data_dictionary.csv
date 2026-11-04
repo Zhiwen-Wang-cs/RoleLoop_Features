@@ -1,0 +1,101 @@
+file_path,column_name,dtype,unit,description,allowed_values,missing_value,required
+data/raw/schema_calls.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/raw/schema_calls.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/raw/schema_calls.csv,model,string,,骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称,见 config/aggregation.json model_aliases,empty cell,true
+data/raw/schema_calls.csv,react_tool_description_tokens_per_request,integer,tokens/request,ReAct 单次请求的工具描述 token 估算,>=0,empty cell,true
+data/raw/schema_calls.csv,roleloop_tool_description_tokens_per_pe_pair,integer,tokens/P+E pair,RoleLoop 一次 Planner+Executor 组合的工具描述 token 合计；不能当作单次调用,>=0,empty cell,true
+data/raw/schema_calls.csv,react_calls_per_task,number,logged calls/task,作者给定 ReAct 每题平均日志调用次数；业务工具与模型请求的精确定义未提供,>=0,empty cell,true
+data/raw/schema_calls.csv,roleloop_pe_calls_per_task,number,logged P/E calls/task,作者给定 RoleLoop 每题平均调用次数，仅计 Planner 与 Executor,>=0,empty cell,true
+data/raw/tool_views.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/raw/tool_views.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/raw/tool_views.csv,model,string,,骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称,见 config/aggregation.json model_aliases,empty cell,true
+data/raw/tool_views.csv,full_library_tool_description_tokens_per_request,integer,tokens/request,工具视图重建统计中的完整工具库单次描述；不等同于 ReAct 原生工具接口,>=0,empty cell,true
+data/raw/tool_views.csv,viewed_tool_description_tokens_per_pe_pair,integer,tokens/P+E pair,有视图条件下 P+E 两类角色的工具描述合计,>=0,empty cell,true
+data/raw/tool_views.csv,reported_tool_description_difference_tokens,integer,tokens,作者原表的完整库减 P+E 描述差值，保留负值,signed integer,empty cell,true
+data/raw/tool_views.csv,no_view_estimated_tool_description_tokens_per_task,integer,tokens/task,固定轨迹重建的无视图每题累计工具描述开销；原口径包含 Reporter,>=0,empty cell,true
+data/raw/tool_views.csv,with_view_estimated_tool_description_tokens_per_task,integer,tokens/task,固定轨迹重建的有视图每题累计工具描述开销；原口径包含 Reporter,>=0,empty cell,true
+data/raw/tool_views.csv,reported_saving_tokens_per_task,integer,tokens/task,原表每题节省估算；保留原值和取整差异,signed integer,empty cell,true
+data/raw/tool_views.csv,reported_saving_pct,number,percent 0-100 scale; signed,作者给定节省比例百分数；TravelGym 的原负号保留且标记冲突,signed percent,empty cell,true
+data/raw/egolink_costs.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/raw/egolink_costs.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/raw/egolink_costs.csv,model,string,,骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称,见 config/aggregation.json model_aliases,empty cell,true
+data/raw/egolink_costs.csv,mode,string,,作者给定方法名；Muse 完整框架原写 SAGE，raw 保留该名称,ReAct|Summary|RoleLoop|SAGE,empty cell,true
+data/raw/egolink_costs.csv,tokens_per_task,integer,tokens/task,作者给定 EgoLink2026 每题 token 数；组成与失败分母尚待确认,>=0,empty cell,true
+data/raw/egolink_costs.csv,time_seconds_per_task,number,seconds/task,作者给定每题平均耗时；计时范围、并发和硬件未提供,>=0,empty cell,true
+data/processed/panel_a_tool_schema.csv,panel,string,,建议的四联图面板标识,a|b|c|d,empty cell,true
+data/processed/panel_a_tool_schema.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/panel_a_tool_schema.csv,dataset_abbr,string,,供绘图使用的数据集简称,EB|EC|TG|CP|EL,empty cell,true
+data/processed/panel_a_tool_schema.csv,method,string,,规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法,ReAct|Summary|RoleLoop,empty cell,true
+data/processed/panel_a_tool_schema.csv,condition,string,,面板 d 内部工具视图条件；其他面板为 standard,standard|no_views|with_views,empty cell,true
+data/processed/panel_a_tool_schema.csv,metric,string,,当前面板度量名称,tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task,empty cell,true
+data/processed/panel_a_tool_schema.csv,mean_value,number,见 unit 字段,三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入,>=0,empty cell,true
+data/processed/panel_a_tool_schema.csv,unit,string,,mean_value 的基础单位；k 单位换算由绘图者执行,tokens|calls/task|tokens/task,empty cell,true
+data/processed/panel_a_tool_schema.csv,n_models,integer,backbones,参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数,3,empty cell,true
+data/processed/panel_a_tool_schema.csv,scope,string,,统计对象、请求单位与观测/估算层次,见 docs/provenance.md,empty cell,true
+data/processed/panel_a_tool_schema.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/panel_b_calls_per_task.csv,panel,string,,建议的四联图面板标识,a|b|c|d,empty cell,true
+data/processed/panel_b_calls_per_task.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/panel_b_calls_per_task.csv,dataset_abbr,string,,供绘图使用的数据集简称,EB|EC|TG|CP|EL,empty cell,true
+data/processed/panel_b_calls_per_task.csv,method,string,,规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法,ReAct|Summary|RoleLoop,empty cell,true
+data/processed/panel_b_calls_per_task.csv,condition,string,,面板 d 内部工具视图条件；其他面板为 standard,standard|no_views|with_views,empty cell,true
+data/processed/panel_b_calls_per_task.csv,metric,string,,当前面板度量名称,tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task,empty cell,true
+data/processed/panel_b_calls_per_task.csv,mean_value,number,见 unit 字段,三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入,>=0,empty cell,true
+data/processed/panel_b_calls_per_task.csv,unit,string,,mean_value 的基础单位；k 单位换算由绘图者执行,tokens|calls/task|tokens/task,empty cell,true
+data/processed/panel_b_calls_per_task.csv,n_models,integer,backbones,参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数,3,empty cell,true
+data/processed/panel_b_calls_per_task.csv,scope,string,,统计对象、请求单位与观测/估算层次,见 docs/provenance.md,empty cell,true
+data/processed/panel_b_calls_per_task.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,panel,string,,建议的四联图面板标识,a|b|c|d,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,dataset_abbr,string,,供绘图使用的数据集简称,EB|EC|TG|CP|EL,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,method,string,,规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法,ReAct|Summary|RoleLoop,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,condition,string,,面板 d 内部工具视图条件；其他面板为 standard,standard|no_views|with_views,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,metric,string,,当前面板度量名称,tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,mean_value,number,见 unit 字段,三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入,>=0,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,unit,string,,mean_value 的基础单位；k 单位换算由绘图者执行,tokens|calls/task|tokens/task,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,n_models,integer,backbones,参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数,3,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,scope,string,,统计对象、请求单位与观测/估算层次,见 docs/provenance.md,empty cell,true
+data/processed/panel_c_tokens_per_task.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/panel_d_tool_views.csv,panel,string,,建议的四联图面板标识,a|b|c|d,empty cell,true
+data/processed/panel_d_tool_views.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/panel_d_tool_views.csv,dataset_abbr,string,,供绘图使用的数据集简称,EB|EC|TG|CP|EL,empty cell,true
+data/processed/panel_d_tool_views.csv,method,string,,规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法,ReAct|Summary|RoleLoop,empty cell,true
+data/processed/panel_d_tool_views.csv,condition,string,,面板 d 内部工具视图条件；其他面板为 standard,standard|no_views|with_views,empty cell,true
+data/processed/panel_d_tool_views.csv,metric,string,,当前面板度量名称,tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task,empty cell,true
+data/processed/panel_d_tool_views.csv,mean_value,number,见 unit 字段,三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入,>=0,empty cell,true
+data/processed/panel_d_tool_views.csv,unit,string,,mean_value 的基础单位；k 单位换算由绘图者执行,tokens|calls/task|tokens/task,empty cell,true
+data/processed/panel_d_tool_views.csv,n_models,integer,backbones,参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数,3,empty cell,true
+data/processed/panel_d_tool_views.csv,scope,string,,统计对象、请求单位与观测/估算层次,见 docs/provenance.md,empty cell,true
+data/processed/panel_d_tool_views.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/recorded_costs_all_models.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/recorded_costs_all_models.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/recorded_costs_all_models.csv,model,string,,骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称,见 config/aggregation.json model_aliases,empty cell,true
+data/processed/recorded_costs_all_models.csv,method,string,,规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法,ReAct|Summary|RoleLoop,empty cell,true
+data/processed/recorded_costs_all_models.csv,source_mode,string,,规范化前的原始方法名称,ReAct|Summary|RoleLoop|SAGE,empty cell,true
+data/processed/recorded_costs_all_models.csv,tokens_per_task,integer,tokens/task,作者给定 EgoLink2026 每题 token 数；组成与失败分母尚待确认,>=0,empty cell,true
+data/processed/recorded_costs_all_models.csv,time_seconds_per_task,number,seconds/task,作者给定每题平均耗时；计时范围、并发和硬件未提供,>=0,empty cell,true
+data/processed/recorded_costs_all_models.csv,included_in_panel_c,boolean,,是否属于当前三骨干均值；4B/9B 为 false，仍保留完整数据,true|false,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,dataset,string,,数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称,EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,model,string,,骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称,见 config/aggregation.json model_aliases,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,reported_saving_pct,number,percent 0-100 scale; signed,作者给定节省比例百分数；TravelGym 的原负号保留且标记冲突,signed percent,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,recomputed_saving_pct_from_tokens,number,percent 0-100 scale; signed,100*(无视图-有视图)/无视图；算术审计值，不覆盖原始百分比,signed percent,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,reported_saving_tokens_per_task,integer,tokens/task,原表每题节省估算；保留原值和取整差异,signed integer,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,recomputed_saving_tokens_per_task,integer,tokens/task,无视图减有视图原始列得到的差值,signed integer,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,rounding_residual_tokens,integer,tokens/task,重算节省减原表节省，用于标记取整残差,signed integer,empty cell,true
+data/processed/tool_view_arithmetic_audit.csv,percentage_sign_conflict,boolean,,原百分数符号与 token 差值符号冲突,true|false,empty cell,true
+data/sources.csv,source_id,string,,本图稳定来源标识，映射 data/sources.csv,author_table_1|author_table_2|author_table_3,empty cell,true
+data/sources.csv,file_path,string,repository-relative path,原始 CSV 的仓库根目录相对路径,existing path,empty cell,true
+data/sources.csv,origin_uri,string,URI,包内手工转录快照定位；不是原始实验日志地址,repo:...#...,empty cell,true
+data/sources.csv,experiment_id,string,,上游实验标识；作者未提供，留空,unknown,empty cell,false
+data/sources.csv,run_id,string,,上游运行标识；作者未提供，留空,unknown,empty cell,false
+data/sources.csv,source_revision,string,,上游实验代码/结果版本；作者未提供，留空,unknown,empty cell,false
+data/sources.csv,source_sha256,string,SHA-256,上游原始实验文件校验值；未取得原始文件，留空,unknown,empty cell,false
+data/sources.csv,csv_sha256,string,SHA-256,当前提取 CSV 字节的校验值,64 hex digits,empty cell,true
+data/sources.csv,extraction_command,string,,从包内人工转录快照到 CSV 的命令；不复现从原始日志提取,python .../code/prepare_data.py,empty cell,true
+data/sources.csv,notes,string,,来源、范围、限制及快照校验值,free text,empty cell,true
+images/manifest.csv,output_file,string,repository-relative path,未来图件输出路径；本次无记录,future existing image path,empty cell,true
+images/manifest.csv,generated_at_utc,string,UTC timestamp,未来图件实际生成时间；本次无记录,ISO 8601 UTC,empty cell,true
+images/manifest.csv,code_commit,string,Git SHA,生成图件所用的已存在代码提交；本次无记录,commit SHA,empty cell,true
+images/manifest.csv,data_revision,string,,生成图件使用的输入数据版本；本次无记录,commit or checksums,empty cell,true
+images/manifest.csv,command,string,,图件生成命令；本次无记录,shell command,empty cell,true
+images/manifest.csv,sha256,string,SHA-256,未来图件输出字节校验值；本次无记录,64 hex digits,empty cell,true

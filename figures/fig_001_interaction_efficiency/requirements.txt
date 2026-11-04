@@ -1,0 +1,3 @@
+# Python standard library only; no pip dependencies.
+# Validated with CPython 3.12.14 on Windows; code targets Python >= 3.9.
+# No plotting package, font installation, GPU, or cloud service is needed.

@@ -1,0 +1,13 @@
+source_id,dataset,model,full_library_tool_description_tokens_per_request,viewed_tool_description_tokens_per_pe_pair,reported_tool_description_difference_tokens,no_view_estimated_tool_description_tokens_per_task,with_view_estimated_tool_description_tokens_per_task,reported_saving_tokens_per_task,reported_saving_pct
+author_table_2,EgoBench,Muse,7757,2078,5679,335500,48300,287100,86
+author_table_2,EgoBench,Qwen,7833,2066,5767,435400,53900,381500,88
+author_table_2,EgoBench,GPT,7688,2069,5619,244700,38100,206600,84
+author_table_2,EcomBench,Muse,3418,1749,1669,89400,33900,55500,62
+author_table_2,EcomBench,Qwen,3374,1729,1645,66200,25500,40800,62
+author_table_2,EcomBench,GPT,3511,1862,1649,132000,47300,84700,64
+author_table_2,TravelGym-v2,Muse,963,1155,-192,33900,26500,7400,-22
+author_table_2,TravelGym-v2,Qwen,960,1160,-200,42300,30900,11400,-27
+author_table_2,TravelGym-v2,GPT,962,1147,-185,35700,24600,11100,-31
+author_table_2,COMPASS,Muse,3457,1901,1556,298000,93100,204800,69
+author_table_2,COMPASS,Qwen,3456,1991,1465,172600,57400,115300,67
+author_table_2,COMPASS,GPT,3451,2100,1351,455300,156200,299100,66

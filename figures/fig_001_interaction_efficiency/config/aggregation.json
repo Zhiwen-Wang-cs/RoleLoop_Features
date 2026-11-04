@@ -1,0 +1,61 @@
+{
+  "figure_id": "fig_001_interaction_efficiency",
+  "datasets": [
+    "EgoBench",
+    "ECom-Bench",
+    "TravelGym-v2",
+    "COMPASS"
+  ],
+  "dataset_abbreviations": {
+    "EgoBench": "EB",
+    "ECom-Bench": "EC",
+    "TravelGym-v2": "TG",
+    "COMPASS": "CP",
+    "EgoLink2026": "EL"
+  },
+  "dataset_aliases": {
+    "EcomBench": "ECom-Bench",
+    "ECom-Bench": "ECom-Bench",
+    "EgoBench": "EgoBench",
+    "TravelGym-v2": "TravelGym-v2",
+    "COMPASS": "COMPASS",
+    "EgoLink2026": "EgoLink2026"
+  },
+  "primary_models": [
+    "Qwen3.8-27B",
+    "Muse-Glimmer-30B",
+    "GPT-5.6-sol"
+  ],
+  "model_aliases": {
+    "Muse": "Muse-Glimmer-30B",
+    "Qwen": "Qwen3.8-27B",
+    "GPT": "GPT-5.6-sol",
+    "Muse-Glimmer-30B": "Muse-Glimmer-30B",
+    "Qwen3.8-27B": "Qwen3.8-27B",
+    "GPT-5.6-sol": "GPT-5.6-sol",
+    "Qwen3.5-4B": "Qwen3.5-4B",
+    "Qwen3.5-9B": "Qwen3.5-9B"
+  },
+  "mode_aliases": {
+    "ReAct": "ReAct",
+    "Summary": "Summary",
+    "RoleLoop": "RoleLoop",
+    "SAGE": "RoleLoop"
+  },
+  "aggregation": "unweighted_arithmetic_mean_of_backbone_level_aggregates",
+  "decimal_precision": 28,
+  "expected_raw_rows": {
+    "schema_calls.csv": 12,
+    "tool_views.csv": 12,
+    "egolink_costs.csv": 15
+  },
+  "expected_panel_rows": {
+    "panel_a_tool_schema.csv": 8,
+    "panel_b_calls_per_task.csv": 8,
+    "panel_c_tokens_per_task.csv": 3,
+    "panel_d_tool_views.csv": 8
+  },
+  "expected_sign_conflicts": 3,
+  "missing_value": "",
+  "error_bars": null
+}

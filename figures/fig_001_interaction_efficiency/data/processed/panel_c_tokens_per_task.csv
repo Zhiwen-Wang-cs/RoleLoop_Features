@@ -1,0 +1,4 @@
+panel,dataset,dataset_abbr,method,condition,metric,mean_value,unit,n_models,scope,source_id
+c,EgoLink2026,EL,ReAct,standard,tokens_per_task,318775.6666666666666666666667,tokens/task,3,reported_total_tokens_composition_and_task_matching_unconfirmed,author_table_3
+c,EgoLink2026,EL,Summary,standard,tokens_per_task,398208.6666666666666666666667,tokens/task,3,reported_total_tokens_composition_and_task_matching_unconfirmed,author_table_3
+c,EgoLink2026,EL,RoleLoop,standard,tokens_per_task,252069,tokens/task,3,reported_total_tokens_composition_and_task_matching_unconfirmed,author_table_3

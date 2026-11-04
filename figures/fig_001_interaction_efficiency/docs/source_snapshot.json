@@ -1,0 +1,386 @@
+{
+  "snapshot_kind": "Structured manual transcription of author-supplied aggregate tables; not an experiment-log export",
+  "prepared_date": "2026-11-04",
+  "upstream_logs_available": false,
+  "note": "Numeric strings preserve supplied display precision; commas in integers were removed. Source modes and short model aliases are retained. Original table-2 negative TravelGym percentages are unchanged.",
+  "tables": {
+    "schema_calls": [
+      {
+        "source_id": "author_table_1",
+        "dataset": "EgoBench",
+        "model": "Muse-Glimmer-30B",
+        "react_tool_description_tokens_per_request": "6113",
+        "roleloop_tool_description_tokens_per_pe_pair": "2079",
+        "react_calls_per_task": "18.0",
+        "roleloop_pe_calls_per_task": "36.7"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "EgoBench",
+        "model": "Qwen3.8-27B",
+        "react_tool_description_tokens_per_request": "7142",
+        "roleloop_tool_description_tokens_per_pe_pair": "2062",
+        "react_calls_per_task": "12.3",
+        "roleloop_pe_calls_per_task": "51.4"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "EgoBench",
+        "model": "GPT-5.6-sol",
+        "react_tool_description_tokens_per_request": "6092",
+        "roleloop_tool_description_tokens_per_pe_pair": "2069",
+        "react_calls_per_task": "13.5",
+        "roleloop_pe_calls_per_task": "26.7"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "EcomBench",
+        "model": "Muse-Glimmer-30B",
+        "react_tool_description_tokens_per_request": "3622",
+        "roleloop_tool_description_tokens_per_pe_pair": "1749",
+        "react_calls_per_task": "13.6",
+        "roleloop_pe_calls_per_task": "18.9"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "EcomBench",
+        "model": "Qwen3.8-27B",
+        "react_tool_description_tokens_per_request": "3578",
+        "roleloop_tool_description_tokens_per_pe_pair": "1729",
+        "react_calls_per_task": "12.5",
+        "roleloop_pe_calls_per_task": "13.8"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "EcomBench",
+        "model": "GPT-5.6-sol",
+        "react_tool_description_tokens_per_request": "3730",
+        "roleloop_tool_description_tokens_per_pe_pair": "1862",
+        "react_calls_per_task": "16.0",
+        "roleloop_pe_calls_per_task": "30.2"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "TravelGym-v2",
+        "model": "Muse-Glimmer-30B",
+        "react_tool_description_tokens_per_request": "495",
+        "roleloop_tool_description_tokens_per_pe_pair": "1155",
+        "react_calls_per_task": "19.4",
+        "roleloop_pe_calls_per_task": "30.3"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "TravelGym-v2",
+        "model": "Qwen3.8-27B",
+        "react_tool_description_tokens_per_request": "503",
+        "roleloop_tool_description_tokens_per_pe_pair": "1160",
+        "react_calls_per_task": "19.2",
+        "roleloop_pe_calls_per_task": "41.0"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "TravelGym-v2",
+        "model": "GPT-5.6-sol",
+        "react_tool_description_tokens_per_request": "496",
+        "roleloop_tool_description_tokens_per_pe_pair": "1147",
+        "react_calls_per_task": "18.9",
+        "roleloop_pe_calls_per_task": "34.0"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "COMPASS",
+        "model": "Muse-Glimmer-30B",
+        "react_tool_description_tokens_per_request": "3624",
+        "roleloop_tool_description_tokens_per_pe_pair": "1901",
+        "react_calls_per_task": "28.5",
+        "roleloop_pe_calls_per_task": "78.8"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "COMPASS",
+        "model": "Qwen3.8-27B",
+        "react_tool_description_tokens_per_request": "3623",
+        "roleloop_tool_description_tokens_per_pe_pair": "1991",
+        "react_calls_per_task": "35.1",
+        "roleloop_pe_calls_per_task": "44.0"
+      },
+      {
+        "source_id": "author_table_1",
+        "dataset": "COMPASS",
+        "model": "GPT-5.6-sol",
+        "react_tool_description_tokens_per_request": "3618",
+        "roleloop_tool_description_tokens_per_pe_pair": "2100",
+        "react_calls_per_task": "27.4",
+        "roleloop_pe_calls_per_task": "119.5"
+      }
+    ],
+    "tool_views": [
+      {
+        "source_id": "author_table_2",
+        "dataset": "EgoBench",
+        "model": "Muse",
+        "full_library_tool_description_tokens_per_request": "7757",
+        "viewed_tool_description_tokens_per_pe_pair": "2078",
+        "reported_tool_description_difference_tokens": "5679",
+        "no_view_estimated_tool_description_tokens_per_task": "335500",
+        "with_view_estimated_tool_description_tokens_per_task": "48300",
+        "reported_saving_tokens_per_task": "287100",
+        "reported_saving_pct": "86"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "EgoBench",
+        "model": "Qwen",
+        "full_library_tool_description_tokens_per_request": "7833",
+        "viewed_tool_description_tokens_per_pe_pair": "2066",
+        "reported_tool_description_difference_tokens": "5767",
+        "no_view_estimated_tool_description_tokens_per_task": "435400",
+        "with_view_estimated_tool_description_tokens_per_task": "53900",
+        "reported_saving_tokens_per_task": "381500",
+        "reported_saving_pct": "88"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "EgoBench",
+        "model": "GPT",
+        "full_library_tool_description_tokens_per_request": "7688",
+        "viewed_tool_description_tokens_per_pe_pair": "2069",
+        "reported_tool_description_difference_tokens": "5619",
+        "no_view_estimated_tool_description_tokens_per_task": "244700",
+        "with_view_estimated_tool_description_tokens_per_task": "38100",
+        "reported_saving_tokens_per_task": "206600",
+        "reported_saving_pct": "84"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "EcomBench",
+        "model": "Muse",
+        "full_library_tool_description_tokens_per_request": "3418",
+        "viewed_tool_description_tokens_per_pe_pair": "1749",
+        "reported_tool_description_difference_tokens": "1669",
+        "no_view_estimated_tool_description_tokens_per_task": "89400",
+        "with_view_estimated_tool_description_tokens_per_task": "33900",
+        "reported_saving_tokens_per_task": "55500",
+        "reported_saving_pct": "62"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "EcomBench",
+        "model": "Qwen",
+        "full_library_tool_description_tokens_per_request": "3374",
+        "viewed_tool_description_tokens_per_pe_pair": "1729",
+        "reported_tool_description_difference_tokens": "1645",
+        "no_view_estimated_tool_description_tokens_per_task": "66200",
+        "with_view_estimated_tool_description_tokens_per_task": "25500",
+        "reported_saving_tokens_per_task": "40800",
+        "reported_saving_pct": "62"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "EcomBench",
+        "model": "GPT",
+        "full_library_tool_description_tokens_per_request": "3511",
+        "viewed_tool_description_tokens_per_pe_pair": "1862",
+        "reported_tool_description_difference_tokens": "1649",
+        "no_view_estimated_tool_description_tokens_per_task": "132000",
+        "with_view_estimated_tool_description_tokens_per_task": "47300",
+        "reported_saving_tokens_per_task": "84700",
+        "reported_saving_pct": "64"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "TravelGym-v2",
+        "model": "Muse",
+        "full_library_tool_description_tokens_per_request": "963",
+        "viewed_tool_description_tokens_per_pe_pair": "1155",
+        "reported_tool_description_difference_tokens": "-192",
+        "no_view_estimated_tool_description_tokens_per_task": "33900",
+        "with_view_estimated_tool_description_tokens_per_task": "26500",
+        "reported_saving_tokens_per_task": "7400",
+        "reported_saving_pct": "-22"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "TravelGym-v2",
+        "model": "Qwen",
+        "full_library_tool_description_tokens_per_request": "960",
+        "viewed_tool_description_tokens_per_pe_pair": "1160",
+        "reported_tool_description_difference_tokens": "-200",
+        "no_view_estimated_tool_description_tokens_per_task": "42300",
+        "with_view_estimated_tool_description_tokens_per_task": "30900",
+        "reported_saving_tokens_per_task": "11400",
+        "reported_saving_pct": "-27"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "TravelGym-v2",
+        "model": "GPT",
+        "full_library_tool_description_tokens_per_request": "962",
+        "viewed_tool_description_tokens_per_pe_pair": "1147",
+        "reported_tool_description_difference_tokens": "-185",
+        "no_view_estimated_tool_description_tokens_per_task": "35700",
+        "with_view_estimated_tool_description_tokens_per_task": "24600",
+        "reported_saving_tokens_per_task": "11100",
+        "reported_saving_pct": "-31"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "COMPASS",
+        "model": "Muse",
+        "full_library_tool_description_tokens_per_request": "3457",
+        "viewed_tool_description_tokens_per_pe_pair": "1901",
+        "reported_tool_description_difference_tokens": "1556",
+        "no_view_estimated_tool_description_tokens_per_task": "298000",
+        "with_view_estimated_tool_description_tokens_per_task": "93100",
+        "reported_saving_tokens_per_task": "204800",
+        "reported_saving_pct": "69"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "COMPASS",
+        "model": "Qwen",
+        "full_library_tool_description_tokens_per_request": "3456",
+        "viewed_tool_description_tokens_per_pe_pair": "1991",
+        "reported_tool_description_difference_tokens": "1465",
+        "no_view_estimated_tool_description_tokens_per_task": "172600",
+        "with_view_estimated_tool_description_tokens_per_task": "57400",
+        "reported_saving_tokens_per_task": "115300",
+        "reported_saving_pct": "67"
+      },
+      {
+        "source_id": "author_table_2",
+        "dataset": "COMPASS",
+        "model": "GPT",
+        "full_library_tool_description_tokens_per_request": "3451",
+        "viewed_tool_description_tokens_per_pe_pair": "2100",
+        "reported_tool_description_difference_tokens": "1351",
+        "no_view_estimated_tool_description_tokens_per_task": "455300",
+        "with_view_estimated_tool_description_tokens_per_task": "156200",
+        "reported_saving_tokens_per_task": "299100",
+        "reported_saving_pct": "66"
+      }
+    ],
+    "recorded_costs": [
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.8-27B",
+        "mode": "ReAct",
+        "tokens_per_task": "254815",
+        "time_seconds_per_task": "77.56"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.8-27B",
+        "mode": "Summary",
+        "tokens_per_task": "367904",
+        "time_seconds_per_task": "386.66"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.8-27B",
+        "mode": "RoleLoop",
+        "tokens_per_task": "228523",
+        "time_seconds_per_task": "420.00"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Muse-Glimmer-30B",
+        "mode": "ReAct",
+        "tokens_per_task": "414203",
+        "time_seconds_per_task": "167.90"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Muse-Glimmer-30B",
+        "mode": "Summary",
+        "tokens_per_task": "526802",
+        "time_seconds_per_task": "1088.71"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Muse-Glimmer-30B",
+        "mode": "SAGE",
+        "tokens_per_task": "310395",
+        "time_seconds_per_task": "503.35"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "GPT-5.6-sol",
+        "mode": "ReAct",
+        "tokens_per_task": "287309",
+        "time_seconds_per_task": "271.83"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "GPT-5.6-sol",
+        "mode": "Summary",
+        "tokens_per_task": "299920",
+        "time_seconds_per_task": "367.72"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "GPT-5.6-sol",
+        "mode": "RoleLoop",
+        "tokens_per_task": "217289",
+        "time_seconds_per_task": "941.24"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-9B",
+        "mode": "ReAct",
+        "tokens_per_task": "313102",
+        "time_seconds_per_task": "47.78"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-9B",
+        "mode": "Summary",
+        "tokens_per_task": "316176",
+        "time_seconds_per_task": "151.44"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-9B",
+        "mode": "RoleLoop",
+        "tokens_per_task": "494328",
+        "time_seconds_per_task": "611.41"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-4B",
+        "mode": "ReAct",
+        "tokens_per_task": "295266",
+        "time_seconds_per_task": "34.96"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-4B",
+        "mode": "Summary",
+        "tokens_per_task": "521541",
+        "time_seconds_per_task": "121.13"
+      },
+      {
+        "source_id": "author_table_3",
+        "dataset": "EgoLink2026",
+        "model": "Qwen3.5-4B",
+        "mode": "RoleLoop",
+        "tokens_per_task": "395698",
+        "time_seconds_per_task": "221.00"
+      }
+    ]
+  }
+}

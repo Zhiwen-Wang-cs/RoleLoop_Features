@@ -1,0 +1,13 @@
+source_id,dataset,model,react_tool_description_tokens_per_request,roleloop_tool_description_tokens_per_pe_pair,react_calls_per_task,roleloop_pe_calls_per_task
+author_table_1,EgoBench,Muse-Glimmer-30B,6113,2079,18.0,36.7
+author_table_1,EgoBench,Qwen3.8-27B,7142,2062,12.3,51.4
+author_table_1,EgoBench,GPT-5.6-sol,6092,2069,13.5,26.7
+author_table_1,EcomBench,Muse-Glimmer-30B,3622,1749,13.6,18.9
+author_table_1,EcomBench,Qwen3.8-27B,3578,1729,12.5,13.8
+author_table_1,EcomBench,GPT-5.6-sol,3730,1862,16.0,30.2
+author_table_1,TravelGym-v2,Muse-Glimmer-30B,495,1155,19.4,30.3
+author_table_1,TravelGym-v2,Qwen3.8-27B,503,1160,19.2,41.0
+author_table_1,TravelGym-v2,GPT-5.6-sol,496,1147,18.9,34.0
+author_table_1,COMPASS,Muse-Glimmer-30B,3624,1901,28.5,78.8
+author_table_1,COMPASS,Qwen3.8-27B,3623,1991,35.1,44.0
+author_table_1,COMPASS,GPT-5.6-sol,3618,2100,27.4,119.5
