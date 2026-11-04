@@ -1,0 +1,9 @@
+panel,dataset,dataset_abbr,method,condition,metric,mean_value,unit,n_models,scope,source_id
+b,EgoBench,EB,ReAct,standard,logged_calls_per_task,14.6,calls/task,3,supplied_react_logged_calls,author_table_1
+b,EgoBench,EB,RoleLoop,standard,logged_calls_per_task,38.26666666666666666666666667,calls/task,3,supplied_roleloop_planner_executor_only_logged_calls,author_table_1
+b,ECom-Bench,EC,ReAct,standard,logged_calls_per_task,14.03333333333333333333333333,calls/task,3,supplied_react_logged_calls,author_table_1
+b,ECom-Bench,EC,RoleLoop,standard,logged_calls_per_task,20.96666666666666666666666667,calls/task,3,supplied_roleloop_planner_executor_only_logged_calls,author_table_1
+b,TravelGym-v2,TG,ReAct,standard,logged_calls_per_task,19.16666666666666666666666667,calls/task,3,supplied_react_logged_calls,author_table_1
+b,TravelGym-v2,TG,RoleLoop,standard,logged_calls_per_task,35.1,calls/task,3,supplied_roleloop_planner_executor_only_logged_calls,author_table_1
+b,COMPASS,CP,ReAct,standard,logged_calls_per_task,30.33333333333333333333333333,calls/task,3,supplied_react_logged_calls,author_table_1
+b,COMPASS,CP,RoleLoop,standard,logged_calls_per_task,80.76666666666666666666666667,calls/task,3,supplied_roleloop_planner_executor_only_logged_calls,author_table_1

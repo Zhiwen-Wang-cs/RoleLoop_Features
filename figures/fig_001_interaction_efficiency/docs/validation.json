@@ -1,0 +1,51 @@
+{
+  "status": "data-ready",
+  "experiment_rerun": false,
+  "plot_generated": false,
+  "independent_reproduction": false,
+  "row_counts": {
+    "data/raw/schema_calls.csv": 12,
+    "data/raw/tool_views.csv": 12,
+    "data/raw/egolink_costs.csv": 15,
+    "data/processed/panel_a_tool_schema.csv": 8,
+    "data/processed/panel_b_calls_per_task.csv": 8,
+    "data/processed/panel_c_tokens_per_task.csv": 3,
+    "data/processed/panel_d_tool_views.csv": 8,
+    "data/processed/recorded_costs_all_models.csv": 15,
+    "data/processed/tool_view_arithmetic_audit.csv": 12,
+    "data/sources.csv": 3,
+    "images/manifest.csv": 0
+  },
+  "source_percentage_sign_conflicts": 3,
+  "source_rounding_residual_rows": 4,
+  "panel_c_roleloop_saving_vs_react_pct": "20.92589668596620193720348794",
+  "panel_c_roleloop_saving_vs_summary_pct": "36.69926822285803255579570510",
+  "sha256": {
+    "code/prepare_data.py": "5b4b4fa98f7a1e3ffe64dd83e355dd1c6b23dfc694f8efbc41bd71c1a6461772",
+    "config/aggregation.json": "9285ee3019ece95407e59969b61cc293d3cae814a591027b4185cfa843ef1cac",
+    "config/data_schema.json": "ebe995fe1b32539cfb09e06b987a9c95c974b5bc580de38643366fd144e3a350",
+    "config/plot_handoff.json": "8d8ae2325222774d80dfcea302d8f9172cd8a6979a66c69dbad4cc007f35cff9",
+    "data/processed/panel_a_tool_schema.csv": "91a1d21848c04a71451c94df295d6c9b55c2507d2d01eeda377f4c56e30671f0",
+    "data/processed/panel_b_calls_per_task.csv": "9ce873223600c7167ef5d81bf84744ee87f67e53b2d54d5dc5223321a0470e12",
+    "data/processed/panel_c_tokens_per_task.csv": "897573b19fa813730ebfd6a174b39324539dda53f10929316c73eff1cda68753",
+    "data/processed/panel_d_tool_views.csv": "492a53f00c55d7231f57bbf138e13a23b0e51ada28e2e4030e58031be743aff6",
+    "data/processed/recorded_costs_all_models.csv": "2b1b5f0bdf60d3373303830d4c674057b652c58559096ba0d22c8622a1724306",
+    "data/processed/tool_view_arithmetic_audit.csv": "7e3e45fc6af65cc5c14f831b17ce2efc16c60c875ad60a5b110dcf1ffc25f4df",
+    "data/raw/egolink_costs.csv": "88f833ae484a12fa6e4b45270ddd429c366e246d33c232a4097fabc1f15e9230",
+    "data/raw/schema_calls.csv": "176bc23cf47939a2a3f1cdc78666b5e9fffe2365d828e29307e31319fcddfda0",
+    "data/raw/tool_views.csv": "fcca8c6f034d7935415a27c6276e68512edbc740d33e8c29515d91f02b54ce05",
+    "data/sources.csv": "02c3166308a73fb205785103cca231f349a20907faaa2407ecb784b0a532bfdc",
+    "docs/data_dictionary.csv": "2102ab1ff1b6ca697b08fe761420aa649a57e89031c4a06d0e339ce7d518ba1b",
+    "docs/source_snapshot.json": "a5ec155fe11587af00715c72e91c97b4490427bd9ecd1440f5ab127efe11d184",
+    "images/manifest.csv": "b8aa022dd9a5931c247aab9bf29fdc489be502a0cf77c6736218a800d4aecfed"
+  },
+  "verified_at_utc": "2026-11-04T05:11:06.809331+00:00",
+  "verifier": "Codex local data-processing check; not an independent experiment rerun",
+  "environment": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "system": "Windows",
+    "release": "11",
+    "third_party_dependencies": []
+  }
+}

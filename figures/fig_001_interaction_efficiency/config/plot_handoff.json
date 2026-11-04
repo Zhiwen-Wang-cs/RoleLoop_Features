@@ -1,0 +1,39 @@
+{
+  "layout": "1 x 4",
+  "plotting_owner": "to be assigned by the authors",
+  "plotting_implementation": "not supplied by request",
+  "panel_inputs": {
+    "a": "data/processed/panel_a_tool_schema.csv",
+    "b": "data/processed/panel_b_calls_per_task.csv",
+    "c": "data/processed/panel_c_tokens_per_task.csv",
+    "d": "data/processed/panel_d_tool_views.csv"
+  },
+  "display_divisors": {
+    "a": 1000,
+    "b": 1,
+    "c": 1000,
+    "d": 1000
+  },
+  "display_units": {
+    "a": "k tokens",
+    "b": "calls/task",
+    "c": "k tokens/task",
+    "d": "k tool-description tokens/task"
+  },
+  "palette": {
+    "react": "#2F5597",
+    "roleloop": "#C55A11",
+    "summary": "#548235",
+    "react_fill": "#C9D7EF",
+    "roleloop_fill": "#F4B183",
+    "summary_fill": "#D6E6C6"
+  },
+  "font_suggestion": "A single font family; exact visual design to be decided by the plotting collaborator",
+  "constraints": [
+    "Use all four datasets in a,b,d; c uses EgoLink2026 only.",
+    "Keep ReAct one-request vs RoleLoop P+E-pair units explicit in caption.",
+    "Do not call d a rerun ablation or pool d Reporter-inclusive estimates with b P/E-only counts.",
+    "Do not use the inconsistent TravelGym saving percentages; absolute supplied token columns remain available.",
+    "No synthetic uncertainty or speed claims."
+  ]
+}

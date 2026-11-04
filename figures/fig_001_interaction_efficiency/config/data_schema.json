@@ -1,0 +1,924 @@
+{
+  "data/raw/schema_calls.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "model",
+      "dtype": "string",
+      "unit": "",
+      "description": "骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称",
+      "allowed_values": "见 config/aggregation.json model_aliases",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "react_tool_description_tokens_per_request",
+      "dtype": "integer",
+      "unit": "tokens/request",
+      "description": "ReAct 单次请求的工具描述 token 估算",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "roleloop_tool_description_tokens_per_pe_pair",
+      "dtype": "integer",
+      "unit": "tokens/P+E pair",
+      "description": "RoleLoop 一次 Planner+Executor 组合的工具描述 token 合计；不能当作单次调用",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "react_calls_per_task",
+      "dtype": "number",
+      "unit": "logged calls/task",
+      "description": "作者给定 ReAct 每题平均日志调用次数；业务工具与模型请求的精确定义未提供",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "roleloop_pe_calls_per_task",
+      "dtype": "number",
+      "unit": "logged P/E calls/task",
+      "description": "作者给定 RoleLoop 每题平均调用次数，仅计 Planner 与 Executor",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/raw/tool_views.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "model",
+      "dtype": "string",
+      "unit": "",
+      "description": "骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称",
+      "allowed_values": "见 config/aggregation.json model_aliases",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "full_library_tool_description_tokens_per_request",
+      "dtype": "integer",
+      "unit": "tokens/request",
+      "description": "工具视图重建统计中的完整工具库单次描述；不等同于 ReAct 原生工具接口",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "viewed_tool_description_tokens_per_pe_pair",
+      "dtype": "integer",
+      "unit": "tokens/P+E pair",
+      "description": "有视图条件下 P+E 两类角色的工具描述合计",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "reported_tool_description_difference_tokens",
+      "dtype": "integer",
+      "unit": "tokens",
+      "description": "作者原表的完整库减 P+E 描述差值，保留负值",
+      "allowed_values": "signed integer",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "no_view_estimated_tool_description_tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "固定轨迹重建的无视图每题累计工具描述开销；原口径包含 Reporter",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "with_view_estimated_tool_description_tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "固定轨迹重建的有视图每题累计工具描述开销；原口径包含 Reporter",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "reported_saving_tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "原表每题节省估算；保留原值和取整差异",
+      "allowed_values": "signed integer",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "reported_saving_pct",
+      "dtype": "number",
+      "unit": "percent 0-100 scale; signed",
+      "description": "作者给定节省比例百分数；TravelGym 的原负号保留且标记冲突",
+      "allowed_values": "signed percent",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/raw/egolink_costs.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "model",
+      "dtype": "string",
+      "unit": "",
+      "description": "骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称",
+      "allowed_values": "见 config/aggregation.json model_aliases",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "mode",
+      "dtype": "string",
+      "unit": "",
+      "description": "作者给定方法名；Muse 完整框架原写 SAGE，raw 保留该名称",
+      "allowed_values": "ReAct|Summary|RoleLoop|SAGE",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "作者给定 EgoLink2026 每题 token 数；组成与失败分母尚待确认",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "time_seconds_per_task",
+      "dtype": "number",
+      "unit": "seconds/task",
+      "description": "作者给定每题平均耗时；计时范围、并发和硬件未提供",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/panel_a_tool_schema.csv": [
+    {
+      "column_name": "panel",
+      "dtype": "string",
+      "unit": "",
+      "description": "建议的四联图面板标识",
+      "allowed_values": "a|b|c|d",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset_abbr",
+      "dtype": "string",
+      "unit": "",
+      "description": "供绘图使用的数据集简称",
+      "allowed_values": "EB|EC|TG|CP|EL",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "method",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法",
+      "allowed_values": "ReAct|Summary|RoleLoop",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "condition",
+      "dtype": "string",
+      "unit": "",
+      "description": "面板 d 内部工具视图条件；其他面板为 standard",
+      "allowed_values": "standard|no_views|with_views",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "metric",
+      "dtype": "string",
+      "unit": "",
+      "description": "当前面板度量名称",
+      "allowed_values": "tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "mean_value",
+      "dtype": "number",
+      "unit": "见 unit 字段",
+      "description": "三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "unit",
+      "dtype": "string",
+      "unit": "",
+      "description": "mean_value 的基础单位；k 单位换算由绘图者执行",
+      "allowed_values": "tokens|calls/task|tokens/task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "n_models",
+      "dtype": "integer",
+      "unit": "backbones",
+      "description": "参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数",
+      "allowed_values": "3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "scope",
+      "dtype": "string",
+      "unit": "",
+      "description": "统计对象、请求单位与观测/估算层次",
+      "allowed_values": "见 docs/provenance.md",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/panel_b_calls_per_task.csv": [
+    {
+      "column_name": "panel",
+      "dtype": "string",
+      "unit": "",
+      "description": "建议的四联图面板标识",
+      "allowed_values": "a|b|c|d",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset_abbr",
+      "dtype": "string",
+      "unit": "",
+      "description": "供绘图使用的数据集简称",
+      "allowed_values": "EB|EC|TG|CP|EL",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "method",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法",
+      "allowed_values": "ReAct|Summary|RoleLoop",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "condition",
+      "dtype": "string",
+      "unit": "",
+      "description": "面板 d 内部工具视图条件；其他面板为 standard",
+      "allowed_values": "standard|no_views|with_views",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "metric",
+      "dtype": "string",
+      "unit": "",
+      "description": "当前面板度量名称",
+      "allowed_values": "tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "mean_value",
+      "dtype": "number",
+      "unit": "见 unit 字段",
+      "description": "三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "unit",
+      "dtype": "string",
+      "unit": "",
+      "description": "mean_value 的基础单位；k 单位换算由绘图者执行",
+      "allowed_values": "tokens|calls/task|tokens/task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "n_models",
+      "dtype": "integer",
+      "unit": "backbones",
+      "description": "参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数",
+      "allowed_values": "3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "scope",
+      "dtype": "string",
+      "unit": "",
+      "description": "统计对象、请求单位与观测/估算层次",
+      "allowed_values": "见 docs/provenance.md",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/panel_c_tokens_per_task.csv": [
+    {
+      "column_name": "panel",
+      "dtype": "string",
+      "unit": "",
+      "description": "建议的四联图面板标识",
+      "allowed_values": "a|b|c|d",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset_abbr",
+      "dtype": "string",
+      "unit": "",
+      "description": "供绘图使用的数据集简称",
+      "allowed_values": "EB|EC|TG|CP|EL",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "method",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法",
+      "allowed_values": "ReAct|Summary|RoleLoop",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "condition",
+      "dtype": "string",
+      "unit": "",
+      "description": "面板 d 内部工具视图条件；其他面板为 standard",
+      "allowed_values": "standard|no_views|with_views",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "metric",
+      "dtype": "string",
+      "unit": "",
+      "description": "当前面板度量名称",
+      "allowed_values": "tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "mean_value",
+      "dtype": "number",
+      "unit": "见 unit 字段",
+      "description": "三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "unit",
+      "dtype": "string",
+      "unit": "",
+      "description": "mean_value 的基础单位；k 单位换算由绘图者执行",
+      "allowed_values": "tokens|calls/task|tokens/task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "n_models",
+      "dtype": "integer",
+      "unit": "backbones",
+      "description": "参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数",
+      "allowed_values": "3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "scope",
+      "dtype": "string",
+      "unit": "",
+      "description": "统计对象、请求单位与观测/估算层次",
+      "allowed_values": "见 docs/provenance.md",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/panel_d_tool_views.csv": [
+    {
+      "column_name": "panel",
+      "dtype": "string",
+      "unit": "",
+      "description": "建议的四联图面板标识",
+      "allowed_values": "a|b|c|d",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset_abbr",
+      "dtype": "string",
+      "unit": "",
+      "description": "供绘图使用的数据集简称",
+      "allowed_values": "EB|EC|TG|CP|EL",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "method",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法",
+      "allowed_values": "ReAct|Summary|RoleLoop",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "condition",
+      "dtype": "string",
+      "unit": "",
+      "description": "面板 d 内部工具视图条件；其他面板为 standard",
+      "allowed_values": "standard|no_views|with_views",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "metric",
+      "dtype": "string",
+      "unit": "",
+      "description": "当前面板度量名称",
+      "allowed_values": "tool_description_tokens|logged_calls_per_task|tokens_per_task|estimated_tool_description_tokens_per_task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "mean_value",
+      "dtype": "number",
+      "unit": "见 unit 字段",
+      "description": "三个骨干级汇总值的等权算术均值；Decimal 28 位精度，未作绘图舍入",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "unit",
+      "dtype": "string",
+      "unit": "",
+      "description": "mean_value 的基础单位；k 单位换算由绘图者执行",
+      "allowed_values": "tokens|calls/task|tokens/task",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "n_models",
+      "dtype": "integer",
+      "unit": "backbones",
+      "description": "参与均值的不同骨干数；不是任务数、seed 数或独立重复运行数",
+      "allowed_values": "3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "scope",
+      "dtype": "string",
+      "unit": "",
+      "description": "统计对象、请求单位与观测/估算层次",
+      "allowed_values": "见 docs/provenance.md",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/recorded_costs_all_models.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "model",
+      "dtype": "string",
+      "unit": "",
+      "description": "骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称",
+      "allowed_values": "见 config/aggregation.json model_aliases",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "method",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化后的推理框架名称，不代表 RoleLoop-PO 训练算法",
+      "allowed_values": "ReAct|Summary|RoleLoop",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "source_mode",
+      "dtype": "string",
+      "unit": "",
+      "description": "规范化前的原始方法名称",
+      "allowed_values": "ReAct|Summary|RoleLoop|SAGE",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "作者给定 EgoLink2026 每题 token 数；组成与失败分母尚待确认",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "time_seconds_per_task",
+      "dtype": "number",
+      "unit": "seconds/task",
+      "description": "作者给定每题平均耗时；计时范围、并发和硬件未提供",
+      "allowed_values": ">=0",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "included_in_panel_c",
+      "dtype": "boolean",
+      "unit": "",
+      "description": "是否属于当前三骨干均值；4B/9B 为 false，仍保留完整数据",
+      "allowed_values": "true|false",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/processed/tool_view_arithmetic_audit.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "dataset",
+      "dtype": "string",
+      "unit": "",
+      "description": "数据集；raw 保留作者拼写，processed 使用 aggregation.json 中的规范名称",
+      "allowed_values": "EgoBench|EcomBench|ECom-Bench|TravelGym-v2|COMPASS|EgoLink2026",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "model",
+      "dtype": "string",
+      "unit": "",
+      "description": "骨干模型；raw 工具视图表保留 Muse/Qwen/GPT 简称，processed 映射全称",
+      "allowed_values": "见 config/aggregation.json model_aliases",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "reported_saving_pct",
+      "dtype": "number",
+      "unit": "percent 0-100 scale; signed",
+      "description": "作者给定节省比例百分数；TravelGym 的原负号保留且标记冲突",
+      "allowed_values": "signed percent",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "recomputed_saving_pct_from_tokens",
+      "dtype": "number",
+      "unit": "percent 0-100 scale; signed",
+      "description": "100*(无视图-有视图)/无视图；算术审计值，不覆盖原始百分比",
+      "allowed_values": "signed percent",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "reported_saving_tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "原表每题节省估算；保留原值和取整差异",
+      "allowed_values": "signed integer",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "recomputed_saving_tokens_per_task",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "无视图减有视图原始列得到的差值",
+      "allowed_values": "signed integer",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "rounding_residual_tokens",
+      "dtype": "integer",
+      "unit": "tokens/task",
+      "description": "重算节省减原表节省，用于标记取整残差",
+      "allowed_values": "signed integer",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "percentage_sign_conflict",
+      "dtype": "boolean",
+      "unit": "",
+      "description": "原百分数符号与 token 差值符号冲突",
+      "allowed_values": "true|false",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "data/sources.csv": [
+    {
+      "column_name": "source_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "本图稳定来源标识，映射 data/sources.csv",
+      "allowed_values": "author_table_1|author_table_2|author_table_3",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "file_path",
+      "dtype": "string",
+      "unit": "repository-relative path",
+      "description": "原始 CSV 的仓库根目录相对路径",
+      "allowed_values": "existing path",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "origin_uri",
+      "dtype": "string",
+      "unit": "URI",
+      "description": "包内手工转录快照定位；不是原始实验日志地址",
+      "allowed_values": "repo:...#...",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "experiment_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "上游实验标识；作者未提供，留空",
+      "allowed_values": "unknown",
+      "missing_value": "empty cell",
+      "required": "false"
+    },
+    {
+      "column_name": "run_id",
+      "dtype": "string",
+      "unit": "",
+      "description": "上游运行标识；作者未提供，留空",
+      "allowed_values": "unknown",
+      "missing_value": "empty cell",
+      "required": "false"
+    },
+    {
+      "column_name": "source_revision",
+      "dtype": "string",
+      "unit": "",
+      "description": "上游实验代码/结果版本；作者未提供，留空",
+      "allowed_values": "unknown",
+      "missing_value": "empty cell",
+      "required": "false"
+    },
+    {
+      "column_name": "source_sha256",
+      "dtype": "string",
+      "unit": "SHA-256",
+      "description": "上游原始实验文件校验值；未取得原始文件，留空",
+      "allowed_values": "unknown",
+      "missing_value": "empty cell",
+      "required": "false"
+    },
+    {
+      "column_name": "csv_sha256",
+      "dtype": "string",
+      "unit": "SHA-256",
+      "description": "当前提取 CSV 字节的校验值",
+      "allowed_values": "64 hex digits",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "extraction_command",
+      "dtype": "string",
+      "unit": "",
+      "description": "从包内人工转录快照到 CSV 的命令；不复现从原始日志提取",
+      "allowed_values": "python .../code/prepare_data.py",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "notes",
+      "dtype": "string",
+      "unit": "",
+      "description": "来源、范围、限制及快照校验值",
+      "allowed_values": "free text",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ],
+  "images/manifest.csv": [
+    {
+      "column_name": "output_file",
+      "dtype": "string",
+      "unit": "repository-relative path",
+      "description": "未来图件输出路径；本次无记录",
+      "allowed_values": "future existing image path",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "generated_at_utc",
+      "dtype": "string",
+      "unit": "UTC timestamp",
+      "description": "未来图件实际生成时间；本次无记录",
+      "allowed_values": "ISO 8601 UTC",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "code_commit",
+      "dtype": "string",
+      "unit": "Git SHA",
+      "description": "生成图件所用的已存在代码提交；本次无记录",
+      "allowed_values": "commit SHA",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "data_revision",
+      "dtype": "string",
+      "unit": "",
+      "description": "生成图件使用的输入数据版本；本次无记录",
+      "allowed_values": "commit or checksums",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "command",
+      "dtype": "string",
+      "unit": "",
+      "description": "图件生成命令；本次无记录",
+      "allowed_values": "shell command",
+      "missing_value": "empty cell",
+      "required": "true"
+    },
+    {
+      "column_name": "sha256",
+      "dtype": "string",
+      "unit": "SHA-256",
+      "description": "未来图件输出字节校验值；本次无记录",
+      "allowed_values": "64 hex digits",
+      "missing_value": "empty cell",
+      "required": "true"
+    }
+  ]
+}

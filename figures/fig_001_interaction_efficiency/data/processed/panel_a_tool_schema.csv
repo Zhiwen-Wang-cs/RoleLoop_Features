@@ -1,0 +1,9 @@
+panel,dataset,dataset_abbr,method,condition,metric,mean_value,unit,n_models,scope,source_id
+a,EgoBench,EB,ReAct,standard,tool_description_tokens,6449,tokens,3,reconstructed_schema_one_react_request,author_table_1
+a,EgoBench,EB,RoleLoop,standard,tool_description_tokens,2070,tokens,3,reconstructed_schema_one_planner_executor_pair,author_table_1
+a,ECom-Bench,EC,ReAct,standard,tool_description_tokens,3643.333333333333333333333333,tokens,3,reconstructed_schema_one_react_request,author_table_1
+a,ECom-Bench,EC,RoleLoop,standard,tool_description_tokens,1780,tokens,3,reconstructed_schema_one_planner_executor_pair,author_table_1
+a,TravelGym-v2,TG,ReAct,standard,tool_description_tokens,498,tokens,3,reconstructed_schema_one_react_request,author_table_1
+a,TravelGym-v2,TG,RoleLoop,standard,tool_description_tokens,1154,tokens,3,reconstructed_schema_one_planner_executor_pair,author_table_1
+a,COMPASS,CP,ReAct,standard,tool_description_tokens,3621.666666666666666666666667,tokens,3,reconstructed_schema_one_react_request,author_table_1
+a,COMPASS,CP,RoleLoop,standard,tool_description_tokens,1997.333333333333333333333333,tokens,3,reconstructed_schema_one_planner_executor_pair,author_table_1
